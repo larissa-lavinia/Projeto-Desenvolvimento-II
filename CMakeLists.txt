@@ -54,7 +54,7 @@ target_link_libraries(imgui PUBLIC
 # ==========================================================
 
 add_executable(ENEMzandia
-    projeto/main.cpp
+    src/main.cpp
 )
 
 target_include_directories(ENEMzandia PRIVATE
