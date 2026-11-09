@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.20)
 
 project(ENEMzandia LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # ==========================================================
@@ -53,13 +53,18 @@ target_link_libraries(imgui PUBLIC
 # Seu programa
 # ==========================================================
 
+file(GLOB_RECURSE ENEMZANDIA_SOURCES CONFIGURE_DEPENDS
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
+)
+
 add_executable(ENEMzandia
-    src/main.cpp
+    ${ENEMZANDIA_SOURCES}
 )
 
 target_include_directories(ENEMzandia PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/backends
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
 target_link_libraries(ENEMzandia PRIVATE

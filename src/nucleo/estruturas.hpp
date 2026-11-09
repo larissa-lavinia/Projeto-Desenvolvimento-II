@@ -16,3 +16,9 @@ struct Inscrito {
 	Dados dados;
 	Gabarito gabarito;
 };
+
+bool GetBit(uint32_t data, uint8_t position);
+
+uint16_t GetBit(uint32_t data, uint8_t position, uint8_t size);
+
+void BitUnitTest();
