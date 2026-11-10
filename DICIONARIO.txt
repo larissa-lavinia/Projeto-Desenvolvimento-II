@@ -1,0 +1,18 @@
+[inscricao]
+participante 16
+
+faixa etaria 5
+sexo 1
+cor 3
+nacionalidade 3
+situação e.m 2
+tipo e.m 1
+treineiro 1
+
+Loc 13
+Mun 13
+
+socio_eco 2
+
+possui renda 1
+possui wi-fi 1

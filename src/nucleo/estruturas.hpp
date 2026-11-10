@@ -2,23 +2,25 @@
 
 #include <cstdint>
 
-struct Dados {
-	uint32_t participante;
-	uint32_t local_socioeconomico;
+enum participant
+
+struct Personal {
+	uint16_t participante;
+	uint16_t local_socioeconomico;
 };
 
-struct Gabarito {
+struct Score {
 	uint16_t p1;
 	uint16_t p2;
 };
 
-struct Inscrito {
-	Dados dados;
-	Gabarito gabarito;
+struct Participant {
+	Personal personal;
+	Score score;
 };
 
-bool GetBit(uint32_t data, uint8_t position);
+bool Bit::GetBit(uint32_t data, uint8_t position);
 
-uint16_t GetBit(uint32_t data, uint8_t position, uint8_t size);
+uint32_t Bit::GetBit(uint32_t data, uint8_t position, uint8_t size);
 
-void BitUnitTest();
+void Bit::BitUnitTest();
