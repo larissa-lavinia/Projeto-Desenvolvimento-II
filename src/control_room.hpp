@@ -3,7 +3,7 @@
 #include "nucleo/estruturas.hpp"
 
 void Init() {
-	BitUnitTest();
+	Bit::BitUnitTest();
 }
 
 void Update() {
