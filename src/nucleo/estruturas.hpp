@@ -7,9 +7,17 @@ struct Personal {
 	uint16_t local_socioeconomico;
 };
 
+struct AreaScore {
+	uint16_t p1;	// 01° - 16°
+	uint16_t p2;	// 17° - 32°
+	uint16_t p3;	// 33° - 45° + 3 bits
+};
+
 struct Score {
-	uint16_t p1;
-	uint16_t p2;
+	AreaScore Mat;
+	AreaScore Cienc_Ex;
+	AreaScore Cienc_Hu;
+	AreaScore Lin;
 };
 
 struct Participant {

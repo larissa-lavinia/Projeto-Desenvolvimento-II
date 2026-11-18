@@ -9,8 +9,8 @@ bool Bit::GetBit(uint16_t data, uint8_t position) {
 }
 
 uint16_t Bit::GetBit(uint16_t data, uint8_t position, uint8_t size) {
-	if (size > 32) return 0;
-	return ((data >> position) & (uint16_t(~0) >> (32 - size)));
+	if (size > 16) return 0;
+	return ((data >> position) & (uint16_t(~0) >> (16 - size)));
 }
 
 void Bit::SetBit(uint16_t& data, uint8_t position, bool value) {
@@ -18,8 +18,8 @@ void Bit::SetBit(uint16_t& data, uint8_t position, bool value) {
 }
 
 void Bit::SetBit(uint16_t& data, uint8_t position, uint8_t size, uint16_t value) {
-	if (size > 32) return;
-	data = (value << position) | (data & ~((uint16_t(~0) >> (32 - size)) << position));
+	if (size > 16) return;
+	data = (value << position) | (data & ~((uint16_t(~0) >> (16 - size)) << position));
 }
 
 void Bit::BitUnitTest() {
