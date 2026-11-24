@@ -4,7 +4,7 @@
 
 struct Personal {
 	uint16_t participante;
-	uint16_t local_socioeconomico;
+	uint16_t socioeconomico;
 };
 
 struct AreaScore {
@@ -55,11 +55,14 @@ namespace Data {
 
 	uint8_t GetAge(const uint16_t& personalData);
 
-	uint16_t GetCity(const uint16_t& locationData);
+	uint8_t GetFatherOcup(const uint16_t& soceconomicData);
 
-	uint8_t GetIncome(const uint16_t& economicData);
+	uint8_t GetMotherOcup(const uint16_t& soceconomicData);
 
-	uint8_t GetWifi(const uint16_t& economicData);
+	uint8_t GetWealth(const uint16_t& soceconomicData);
+
+	uint8_t GetHouseQnt(const uint16_t& soceconomicData);
+
 
 	void SetSex(uint16_t& personalData, bool value);
 
@@ -77,9 +80,10 @@ namespace Data {
 
 	void SetAge(uint16_t& personalData, uint8_t value);
 
-	void SetCity(uint16_t& locationData, uint16_t value);
-
-	void SetIncome(uint16_t& economicData, bool value);
-
-	void SetWifi(uint16_t& economicData, bool value);
-}
+	void SetFatherOcup(uint16_t& soceconomicData, uint8_t value);
+	
+	void SetMotherOcup(uint16_t& soceconomicData, uint8_t value);
+	
+	void SetWealth(uint16_t& soceconomicData, uint8_t value);
+	
+	void SetHouseQnt(uint16_t& soceconomicData, uint8_t value);

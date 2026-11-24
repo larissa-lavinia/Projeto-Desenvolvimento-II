@@ -9,10 +9,9 @@ cor 3			pos 5
 nacionalidade 3	pos 8
 faixa etaria 5	pos 11
 
-Loc 13
-Mun 13			pos 0
+socio_eco 16
 
-socio_eco 2		
-
-possui renda 1	pos 13
-possui wifi 1	pos 14
+ocup pai 3		pos 0
+ocup mae 3		pos 3
+renda fam 5		pos 6
+qnt pessoas 5	pos 11
