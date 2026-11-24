@@ -41,8 +41,6 @@ namespace Bit {
 namespace Data {
 	uint8_t GetSex(const uint16_t& personalData);
 
-	uint8_t GetSex(const uint16_t& personalData);
-
 	uint8_t GetSchoolType(const uint16_t& personalData);
 
 	uint8_t GetTrainee(const uint16_t& personalData);
@@ -81,9 +79,10 @@ namespace Data {
 	void SetAge(uint16_t& personalData, uint8_t value);
 
 	void SetFatherOcup(uint16_t& soceconomicData, uint8_t value);
-	
+
 	void SetMotherOcup(uint16_t& soceconomicData, uint8_t value);
-	
+
 	void SetWealth(uint16_t& soceconomicData, uint8_t value);
-	
+
 	void SetHouseQnt(uint16_t& soceconomicData, uint8_t value);
+}
