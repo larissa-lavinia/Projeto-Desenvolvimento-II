@@ -64,8 +64,6 @@ namespace Data {
 
 	void SetSex(uint16_t& personalData, bool value);
 
-	void SetSex(uint16_t& personalData, bool value);
-
 	void SetSchoolType(uint16_t& personalData, bool value);
 
 	void SetTrainee(uint16_t& personalData, bool value);
