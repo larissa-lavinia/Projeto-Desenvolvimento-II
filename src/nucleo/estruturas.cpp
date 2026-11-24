@@ -66,7 +66,7 @@ uint8_t Data::GetAge(const uint16_t& personalData) {
 	return Bit::GetBit(personalData, 11, 5);
 }
 
-uint16_t Data::GetFatherOcup(const uint16_t& soceconomicData) {
+uint8_t Data::GetFatherOcup(const uint16_t& soceconomicData) {
 	return Bit::GetBit(soceconomicData, 0, 3);
 }
 
