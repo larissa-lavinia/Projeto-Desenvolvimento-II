@@ -1,0 +1,1 @@
+//Arquivo responsável por implementar as funções do portal, vai conter a implementação das funções do portal
