@@ -6,7 +6,7 @@
 using namespace std;
 
 // Função interna (privada ao .cpp) para gerar os arquivos .txt no disco
-void gerarArquivosNoDisco(const PortalEstudos& portal) {
+void gerarArquivosTxt(const PortalEstudos& portal) {
     for (int i = 0; i < portal.totalAreas; i++) {
         for (int j = 0; j < portal.areas[i].totalMaterias; j++) {
             ofstream arquivo(portal.areas[i].materias[j].arquivo);
@@ -735,30 +735,25 @@ PortalEstudos iniciarPortalEstudos() {
     };
 
     // Cria todos os .txt assim que o módulo é iniciado
-    gerarArquivosNoDisco(portal);
+    gerarArquivosTxt(portal);
 
     return portal;
 }
-
+//Função de leitura dos conteúdos de cada matéria
 char* lerConteudoDoArquivo(const Materia& materia) {
-    // Abre o arquivo posicionando o cursor no final (ios::ate) para descobrir o tamanho exato em bytes
-    ifstream arquivo(materia.arquivo, ios::ate);
+    ifstream arquivo(materia.arquivo, ios::ate | ios::binary);
 
     if (!arquivo.is_open()) {
         return nullptr;
     }
 
-    streamsize tamanho = arquivo.tellg();
-    arquivo.seekg(0, ios::beg); // Volta o cursor para o início do arquivo
+    int tamanho = (int)(arquivo.tellg());
+    arquivo.seekg(0, ios::beg);
 
-    // Aloca dinamicamente o buffer exato + 1 byte para o caractere nulo '\0'
     char* buffer = new char[tamanho + 1];
 
-    if (arquivo.read(buffer, tamanho)) {
-        buffer[arquivo.gcount()] = '\0'; // Finaliza a C-string corretamente
-    } else {
-        buffer[arquivo.gcount()] = '\0';
-    }
+    arquivo.read(buffer, tamanho);
+    buffer[tamanho] = '\0';
 
     arquivo.close();
     return buffer;
