@@ -27,7 +27,6 @@ struct Participant {
 	Score score;
 };
 
-
 namespace Bit {
 	bool GetBit(uint16_t data, uint8_t position);
 
