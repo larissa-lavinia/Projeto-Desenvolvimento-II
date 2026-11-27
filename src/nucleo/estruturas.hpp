@@ -2,6 +2,10 @@
 
 #include <cstdint>
 
+enum Area {
+	Mat, C_Ex, C_Hu, Lin
+};
+
 struct Personal {
 	uint16_t participante;
 	uint16_t socioeconomico;
@@ -14,10 +18,8 @@ struct AreaScore {
 };
 
 struct Score {
-	AreaScore Mat;
-	AreaScore Cienc_Ex;
-	AreaScore Cienc_Hu;
-	AreaScore Lin;
+	AreaScore exam[4];
+	uint16_t essay;
 };
 
 struct Participant {
@@ -38,7 +40,7 @@ namespace Bit {
 	void BitUnitTest();
 }
 
-namespace Data {
+namespace PersonalData {
 	uint8_t GetSex(const uint16_t& personalData);
 
 	uint8_t GetSchoolType(const uint16_t& personalData);
@@ -83,4 +85,14 @@ namespace Data {
 	void SetWealth(uint16_t& soceconomicData, uint8_t value);
 
 	void SetHouseQnt(uint16_t& soceconomicData, uint8_t value);
+}
+
+namespace ScoreData {
+	uint8_t GetExam(const Score& scoreData, Area area);
+
+	uint16_t GetEssay(const Score& scoreData);
+
+	void SetExam(Score& scoreData, Area area, uint16_t p1, uint16_t p2, uint16_t p3);
+
+	void GetEssay(Score& scoreData, uint16_t value);
 }
