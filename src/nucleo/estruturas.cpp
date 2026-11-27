@@ -14,7 +14,7 @@ uint16_t Bit::GetBit(uint16_t data, uint8_t position, uint8_t size) {
 }
 
 void Bit::SetBit(uint16_t& data, uint8_t position, bool value) {
-	data = (value << position) | (data & (uint16_t(~1) << position));
+	data = (value << position) | (data & ~(uint16_t(1) << position));
 }
 
 void Bit::SetBit(uint16_t& data, uint8_t position, uint8_t size, uint16_t value) {
@@ -66,16 +66,20 @@ uint8_t Data::GetAge(const uint16_t& personalData) {
 	return Bit::GetBit(personalData, 11, 5);
 }
 
-uint16_t Data::GetCity(const uint16_t& locationData) {
-	return Bit::GetBit(locationData, 0, 13);
+uint8_t Data::GetFatherOcup(const uint16_t& soceconomicData) {
+	return Bit::GetBit(soceconomicData, 0, 3);
 }
 
-uint8_t Data::GetIncome(const uint16_t& economicData) {
-	return Bit::GetBit(economicData, 13);
+uint8_t Data::GetMotherOcup(const uint16_t& soceconomicData) {
+	return Bit::GetBit(soceconomicData, 3, 3);
 }
 
-uint8_t Data::GetWifi(const uint16_t& economicData) {
-	return Bit::GetBit(economicData, 14);
+uint8_t Data::GetWealth(const uint16_t& soceconomicData) {
+	return Bit::GetBit(soceconomicData, 6, 5);
+}
+
+uint8_t Data::GetHouseQnt(const uint16_t& soceconomicData) {
+	return Bit::GetBit(soceconomicData, 11, 5);
 }
 
 void Data::SetSex(uint16_t& personalData, bool value) {
@@ -106,14 +110,18 @@ void Data::SetAge(uint16_t& personalData, uint8_t value) {
 	Bit::SetBit(personalData, 11, 5, value);
 }
 
-void Data::SetCity(uint16_t& locationData, uint16_t value) {
-	Bit::SetBit(locationData, 0, 13, value);
+void Data::SetFatherOcup(uint16_t& soceconomicData, uint8_t value) {
+	Bit::SetBit(soceconomicData, 0, 3, value);
 }
 
-void Data::SetIncome(uint16_t& economicData, bool value) {
-	Bit::SetBit(economicData, 13, value);
+void Data::SetMotherOcup(uint16_t& soceconomicData, uint8_t value) {
+	Bit::SetBit(soceconomicData, 3, 3, value);
 }
 
-void Data::SetWifi(uint16_t& economicData, bool value) {
-	Bit::SetBit(economicData, 14, value);
+void Data::SetWealth(uint16_t& soceconomicData, uint8_t value) {
+	Bit::SetBit(soceconomicData, 6, 5, value);
+}
+
+void Data::SetHouseQnt(uint16_t& soceconomicData, uint8_t value) {
+	Bit::SetBit(soceconomicData, 11, 5, value);
 }
