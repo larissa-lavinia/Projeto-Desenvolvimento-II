@@ -1,1 +1,0 @@
-//Arquivo responsável por implementar a assinatura das funções usadas para manipular dados de arquivos.txt

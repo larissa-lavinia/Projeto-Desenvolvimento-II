@@ -1,1 +1,0 @@
-//Arquivo responsável por implementar a lógica das funções do Arquivos.h  

@@ -23,7 +23,7 @@ PortalEstudos iniciarPortalEstudos() {
     Materia* matLinguagens = new Materia[5]{
         {
             "Lingua Portuguesa",
-            "lingua_portuguesa.txt",
+            "Dados/lingua_portuguesa.txt",
             "LINGUA PORTUGUESA - ENEM\n\n"
             "1. Interpretacao de texto\n"
             "Interpretar e compreender o sentido de um texto, identificando sua ideia principal, as informacoes explicitas e implicitas, a finalidade e o ponto de vista do autor.\n"
@@ -70,7 +70,7 @@ PortalEstudos iniciarPortalEstudos() {
         },
         {
             "Literatura",
-            "literatura.txt",
+            "Dados/literatura.txt",
             "LITERATURA - ENEM\n\n"
             "1. Escolas literárias"
             "As escolas literarias sao movimentos que apresentam caracteristicas historicas, culturais e esteticas. Cada periodo expressa maneiras diferentes de representar a sociedade e o ser humano.\n"
@@ -104,7 +104,7 @@ PortalEstudos iniciarPortalEstudos() {
         },
         {
             "Lingua Inglesa",
-            "lingua_inglesa.txt",
+            "Dados/lingua_inglesa.txt",
             "LINGUA INGLESA - ENEM\n\n"
             "1. Interpretacao de textos\n"
             "A prova de ingles prioriza a compreensao, e nao a traducao de cada palavra. Identifique o assunto, a ideia principal, o objetivo do texto e o publico a que se destina.\n"
@@ -128,7 +128,7 @@ PortalEstudos iniciarPortalEstudos() {
         },
         {
             "Lingua Espanhola",
-            "lingua_espanhola.txt",
+            "Dados/lingua_espanhola.txt",
             "LINGUA ESPANHOLA - ENEM\n\n"
             "1. Interpretacao de textos\n"
             "A prova exige compreender o sentido geral e a finalidade de textos em espanhol. Observe titulo, imagens, contexto, palavras conhecidas e conectivos.\n"
@@ -156,7 +156,7 @@ PortalEstudos iniciarPortalEstudos() {
         },
         {
             "Artes",
-            "artes.txt",
+            "Dados/artes.txt",
             "ARTES - ENEM\n\n"
             "1. Artes visuais e arte contemporanea\n"
             "As artes visuais incluem pintura, desenho, escultura, fotografia, gravura, instalacao e outras formas de expressao. A arte contemporanea amplia os materiais e os espacos de exposicao, podendo envolver tecnologia, objetos cotidianos e participacao do publico.\n"
@@ -195,7 +195,7 @@ PortalEstudos iniciarPortalEstudos() {
     Materia* matHumanas = new Materia[4]{
         {
             "Sociologia",
-            "sociologia.txt",
+            "Dados/sociologia.txt",
             "SOCIOLOGIA - ENEM\n\n"
             "1. Cultura e sociedade\n"
             "Cultura inclui valores, conhecimentos, costumes, linguagens, simbolos e praticas compartilhadas. Ela e aprendida e transformada ao longo do tempo.\n"
@@ -242,7 +242,7 @@ PortalEstudos iniciarPortalEstudos() {
         },
         {   
             "Geografia", 
-            "geografia.txt", 
+            "Dados/geografia.txt", 
             "GEOGRAFIA - ENEM\n\n"
             "1. Meio ambiente e questoes ambientais\n"
             "Inclui desmatamento, queimadas, poluicao, perda de biodiversidade, mudancas climaticas e escassez de agua.\n"
@@ -297,7 +297,7 @@ PortalEstudos iniciarPortalEstudos() {
             "Na interpretacao de mapas, escalas, coordenadas, graficos e representacoes tematicas.\n"
         },
         {"Filosofia",
-         "filosofia.txt", 
+         "Dados/filosofia.txt", 
          "FILOSOFIA - ENEM\n\n"
          "1. Filosofia politica\n"
          "Investiga o poder, o Estado, as leis, a organizacao da sociedade e a legitimidade dos governos.\n"
@@ -364,7 +364,7 @@ PortalEstudos iniciarPortalEstudos() {
 
         },
         {"Historia",
-         "historia.txt", 
+         "Dados/historia.txt", 
          "HISTORIA - ENEM\n\n"
          " 1. Brasil Colonia\n"
          "Periodo de dominacao portuguesa iniciado em 1500. A colonizacao envolveu exploracao economica, grandes propriedades, producao voltada ao mercado externo e trabalho escravizado indigena e africano.\n"
@@ -426,7 +426,7 @@ PortalEstudos iniciarPortalEstudos() {
 
     Materia* matNatureza = new Materia[3]{
         {"Biologia",
-         "biologia.txt",
+         "Dados/biologia.txt",
          "BIOLOGIA - ENEM\n\n"
          "1. Ecologia\n"
          "Estuda as relacoes entre os seres vivos e o ambiente. Conceitos importantes: individuo, populacao, comunidade, ecossistema e biosfera.\n"
@@ -478,7 +478,7 @@ PortalEstudos iniciarPortalEstudos() {
          "Em campanhas de saude, vetores, vacinas, epidemias e medidas preventivas.\n"
     },
     {"Fisica",
-        "fisica.txt", 
+        "Dados/fisica.txt", 
         "FISICA - ENEM\n\n"
          "1. Eletrodinamica\n"
          "Estuda cargas eletricas em movimento e circuitos. Corrente eletrica: i = Q/t. Pela Lei de Ohm: U = R * i. Potencia eletrica: P = U * i.\n"
@@ -536,7 +536,7 @@ PortalEstudos iniciarPortalEstudos() {
         },
         {
          "Quimica",
-         "quimica.txt", 
+         "Dados/quimica.txt",
          "QUIMICA - ENEM\n\n"
          "1. Quimica organica\n"
          "Estuda principalmente os compostos de carbono. Hidrocarbonetos possuem carbono e hidrogenio. Funcoes organicas incluem alcool, aldeido, cetona, acido carboxilico, ester, eter e amina.\n"
@@ -588,7 +588,7 @@ PortalEstudos iniciarPortalEstudos() {
 
     Materia* matMatematica = new Materia[1]{
         {"Matematica",
-         "matematica.txt",
+         "Dados/matematica.txt",
          "MATEMATICA - ENEM\n\n"
          "1. Estatistica\n"
          "Media aritmetica: soma dos valores dividida pela quantidade.\n"
@@ -688,7 +688,7 @@ PortalEstudos iniciarPortalEstudos() {
 
     Materia* matRedacao = new Materia[1]{
         {"Redacao",
-         "redacao.txt", 
+         "Dados/redacao.txt", 
          "REDACAO - ENEM\n\n"
          "1. Estrutura do texto dissertativo-argumentativo\n"
          "A redacao do ENEM deve defender um ponto de vista sobre um tema de ordem social, cientifica, cultural ou politica, utilizando argumentos e uma proposta de intervencao.\n"
