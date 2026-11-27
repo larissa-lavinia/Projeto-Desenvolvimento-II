@@ -5,7 +5,7 @@
 
 using namespace std;
 
-// Função interna (privada ao .cpp) para gerar os arquivos .txt no disco
+// Função interna para gerar os arquivos .txt
 void gerarArquivosTxt(const PortalEstudos& portal) {
     for (int i = 0; i < portal.totalAreas; i++) {
         for (int j = 0; j < portal.areas[i].totalMaterias; j++) {
@@ -758,14 +758,14 @@ char* lerConteudoDoArquivo(const Materia& materia) {
     arquivo.close();
     return buffer;
 }
-
+//Função utilizada para desalocar a memória alocada para o texto lido do arquivo
 void liberarTextoLido(char*& texto) {
     if (texto != nullptr) {
         delete[] texto;
         texto = nullptr;
     }
 }
-
+//Funnção para desalocar a memória alocada pelas funcionalidades do portal de estudos, liberando memória para as funcionalidades dos outros módulos do programa
 void encerrarPortalEstudos(PortalEstudos& portal) {
     if (portal.areas != nullptr) {
         for (int i = 0; i < portal.totalAreas; i++) {
