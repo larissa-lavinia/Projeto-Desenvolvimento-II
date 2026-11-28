@@ -1,11 +1,17 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <vector>
 
 #include "files_manager.hpp"
 #include "nucleo/estruturas.hpp"
 
-typedef struct idx {
+const char* ACRONYMS[27] = {
+    "AC","AL","AM","AP","BA","CE","DF","ES","GO","MA","MG","MS","MT",
+    "PA","PB","PE","PI","PR","RJ","RN","RO","RR","RS","SC","SE","SP","TO"
+};
+
+typedef struct idxSocial {
     int iSexo = -1;
     int iTipoEM = -1;
     int iTreineiro = -1;
@@ -17,7 +23,8 @@ typedef struct idx {
     int iOcupMae = -1;
     int iRenda = -1;
     int iQnt = -1;
-} ColunsIndex;
+    int iUF = -1;
+} ColunsSocialIndex;
 
 ReturnCode send(uint8_t moduleId, Request requestCode) {
     return ReturnCode::UNEXPECTEDERROR;
@@ -36,15 +43,11 @@ ReturnCode receiveResponse(uint8_t moduleId) {
     return ReturnCode::UNEXPECTEDERROR;
 }
 
-int getTotalEntrants(uint8_t year) {
+int getTotalEntrants(uint8_t year, uint8_t uf) {
     return 0;
 }
 
-ReturnCode getByYear(uint8_t moduleId) {
-    return ReturnCode::UNEXPECTEDERROR;
-}
-
-ReturnCode getByState(uint8_t moduleId) {
+ReturnCode returnData(uint8_t moduleId) {
     return ReturnCode::UNEXPECTEDERROR;
 }
 
@@ -60,34 +63,41 @@ int letterToInt(const std::string& s) {
     return s[0] - 'A';
 }
 
+int ufIndex(const std::string& sigla) {
+    for(int i = 0; i < 27; i++)
+        if(sigla == ACRONYMS[i]) return i;
+    return 27;
+}
+
 uint8_t code(int value, int maxValid, uint8_t missing) {
     return (value >= 0 && value <= maxValid) ? (uint8_t)value : missing;
 }
 
-Personal createPersonal(const std::string &line, ColunsIndex indexes) {
+Personal createPersonal(const std::string &line, std::string &uf, ColunsSocialIndex indexes) {
     std::stringstream ss(line);
     std::string field;
     Personal p{};
-
+    
     int count = 0;
     while (std::getline(ss, field, ';')) {
-        if(count == indexes.iCor) Data::SetRace(p.participante, code(toInt(field), 5, 0));
-        else if(count == indexes.iFaixa) Data::SetAge(p.participante, code(toInt(field), 20, 20));
-        else if(count == indexes.iNac) Data::SetNationality(p.participante, code(toInt(field), 4, 0));
-        else if(count == indexes.iOcupMae) Data::SetMotherOcup(p.socioeconomico, (uint8_t)letterToInt(field));
-        else if(count == indexes.iOcupPai) Data::SetFatherOcup(p.socioeconomico, (uint8_t)letterToInt(field));
-        else if(count == indexes.iQnt) Data::SetHouseQnt(p.socioeconomico, (uint8_t)toInt(field));
-        else if(count == indexes.iRenda) Data::SetWealth(p.socioeconomico, (uint8_t)letterToInt(field));
-        else if(count == indexes.iSexo) Data::SetSex(p.participante, field == "F");
-        else if(count == indexes.iSitEM) Data::SetSchoolSituation(p.participante, (uint8_t)(toInt(field) - 1)); // Está sendo armazenado só com 2 bits
-        else if(count == indexes.iTipoEM) Data::SetSchoolType(p.participante, toInt(field) == 2);
-        else if(count == indexes.iTreineiro) Data::SetTrainee(p.participante, toInt(field) == 1);
+        if(count == indexes.iCor) PersonalData::SetRace(p.participante, code(toInt(field), 5, 0));
+        else if(count == indexes.iFaixa) PersonalData::SetAge(p.participante, code(toInt(field), 20, 20));
+        else if(count == indexes.iNac) PersonalData::SetNationality(p.participante, code(toInt(field), 4, 0));
+        else if(count == indexes.iOcupMae) PersonalData::SetMotherOcup(p.socioeconomico, (uint8_t)letterToInt(field));
+        else if(count == indexes.iOcupPai) PersonalData::SetFatherOcup(p.socioeconomico, (uint8_t)letterToInt(field));
+        else if(count == indexes.iQnt) PersonalData::SetHouseQnt(p.socioeconomico, (uint8_t)toInt(field));
+        else if(count == indexes.iRenda) PersonalData::SetWealth(p.socioeconomico, (uint8_t)letterToInt(field));
+        else if(count == indexes.iSexo) PersonalData::SetSex(p.participante, field == "F");
+        else if(count == indexes.iSitEM) PersonalData::SetSchoolSituation(p.participante, (uint8_t)(toInt(field) - 1)); // Está sendo armazenado só com 2 bits
+        else if(count == indexes.iTipoEM) PersonalData::SetSchoolType(p.participante, toInt(field) == 2);
+        else if(count == indexes.iTreineiro) PersonalData::SetTrainee(p.participante, toInt(field) == 1);
+        else if(count == indexes.iUF) uf = field;
         count++;
     }
     return p;
 }
 
-bool fileVerification(const std::string &line, int &totalFields, ColunsIndex &indexes) {
+bool fileVerification(const std::string &line, ColunsSocialIndex &indexes) {
     std::stringstream ss(line);
     std::string data;
     int count = 0;
@@ -103,47 +113,62 @@ bool fileVerification(const std::string &line, int &totalFields, ColunsIndex &in
         else if(data == "Q004") indexes.iOcupMae = count;
         else if(data == "Q005") indexes.iQnt = count;
         else if(data == "Q007") indexes.iRenda = count;
+        else if(data == "SG_UF_PROVA") indexes.iUF = count;
         count++;
     }
 
-    totalFields = count;
     return indexes.iSexo != -1 && indexes.iSitEM != -1 && indexes.iOcupMae != -1 && indexes.iTreineiro != -1 &&
         indexes.iCor != -1 && indexes.iFaixa != -1 && indexes.iOcupPai != -1 && indexes.iTipoEM != -1 &&
-        indexes.iNac != -1 && indexes.iRenda != -1 && indexes.iQnt != -1;
+        indexes.iNac != -1 && indexes.iRenda != -1 && indexes.iQnt != -1 && indexes.iUF != -1;
 }
 
 ReturnCode initializeDataFile(std::string path, uint8_t year, uint8_t fileType) {
+    if(year > 25 || year < 24) return ReturnCode::BADREQUEST;
+
+    std::ifstream rawFile(path);
+    if(!rawFile.is_open()) return ReturnCode::FILEERROR;
+
+    std::string line;
+    if(!std::getline(rawFile, line)) return ReturnCode::FILEERROR;
+    if(line.compare(0, 3, "\xEF\xBB\xBF") == 0) line.erase(0, 3);
+
     if(!fileType) { // Social
-        if(year > 25 || year < 24) return ReturnCode::BADREQUEST;
-
-        std::ifstream rawFile(path);
-        if(!rawFile.is_open()) return ReturnCode::FILEERROR;
-        
-        std::string line;
-        if(!std::getline(rawFile, line)) return ReturnCode::FILEERROR;
-        if(line.compare(0, 3, "\xEF\xBB\xBF") == 0) line.erase(0, 3);
-
-        int totalFields = 0;
-        ColunsIndex indexes;
-        if(!fileVerification(line, totalFields, indexes)) return ReturnCode::BADREQUEST;         
+        ColunsSocialIndex indexes;
+        if(!fileVerification(line, indexes)) return ReturnCode::BADREQUEST;         
 
         std::ofstream newFile("files/enem_social_" + std::to_string((int)year) + ".dat", std::ios::binary);
         if(!newFile.is_open()) return ReturnCode::FILEERROR;
 
+        std::vector<Personal> matrix[28];
+        int amountByState[28] = {};
         while(std::getline(rawFile, line)) {
             if(line.empty()) continue;
-            Personal personalData = createPersonal(line, indexes);
-            newFile.write((const char*) &personalData, sizeof(Personal));
+            std::string uf;
+            Personal personalData = createPersonal(line, uf, indexes);
+
+            int pos = ufIndex(uf);
+            matrix[pos].push_back(personalData);
+            amountByState[pos]++;
         }
 
+        for(int i = 0; i < 28; i++) {
+            while(matrix[i].size() > 0) {
+                newFile.write((const char*) &matrix[i].back(), sizeof(Personal));
+                matrix[i].pop_back();
+            }
+        }
+
+        std::ofstream headerFile("files/enem_social_header_" + std::to_string((int)year) + ".dat", std::ios::binary);
+        if(!headerFile.is_open()) return ReturnCode::FILEERROR;
+        for(int i = 0; i < 27; i++) {
+            headerFile.write((const char*) &amountByState[i], sizeof(int));
+        }
+
+        headerFile.close();
         newFile.close();
-        return newFile.fail() ? ReturnCode::FILEERROR : ReturnCode::SUCCESS;
+        return newFile.fail() || headerFile.fail() ? ReturnCode::FILEERROR : ReturnCode::SUCCESS;
     } else { // Resultados
+
         return ReturnCode::UNEXPECTEDERROR;
     }
 }
-
-ReturnCode getTotalEntrants() {
-    return ReturnCode::UNEXPECTEDERROR;
-}
-

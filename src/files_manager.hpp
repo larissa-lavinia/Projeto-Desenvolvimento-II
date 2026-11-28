@@ -86,8 +86,10 @@ ReturnCode initializeDataFile(std::string path, uint8_t year, uint8_t fileType);
  * 
  * Calcula o total de inscritos em uma edição especifica
  * 
- * @param year      Ano a ser analisado.
+ * @param year      Ano a ser consultado.
+ * @param uf        Estado a ser consultado, dado que o valor é igual à posição da uf em ordem alfabética, a partir do zero. Para consulta geral
+ *                  de todos os estados, valor do parâmetro deve ser 255.
  * 
  * @return quantidade de inscritos.
  */
-int getTotalEntrants(uint8_t year);
+int getTotalEntrants(uint8_t year, uint8_t uf);

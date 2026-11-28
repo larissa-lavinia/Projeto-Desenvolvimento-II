@@ -1,5 +1,6 @@
 #include "estruturas.hpp"
 #include <iostream>
+#include <bit>
 #include <bitset>
 
 using namespace std;
@@ -36,92 +37,112 @@ void Bit::BitUnitTest() {
 	cout << "Result -> " << (bitset<8>(testValue)) << " Expected -> 00011101" << endl;
 	SetBit(testValue, 0, 0);
 	cout << "Result -> " << (bitset<8>(testValue)) << " Expected -> 00011100" << endl;
+	SetBit(testValue, 3, 0);
+	cout << "Result -> " << (bitset<8>(testValue)) << " Expected -> 00010100" << endl;
 }
 
-uint8_t Data::GetSex(const uint16_t& personalData) {
+uint8_t PersonalData::GetSex(const uint16_t& personalData) {
 	return Bit::GetBit(personalData, 0);
 }
 
-uint8_t Data::GetSchoolType(const uint16_t& personalData) {
+uint8_t PersonalData::GetSchoolType(const uint16_t& personalData) {
 	return Bit::GetBit(personalData, 1);
 }
 
-uint8_t Data::GetTrainee(const uint16_t& personalData) {
+uint8_t PersonalData::GetTrainee(const uint16_t& personalData) {
 	return Bit::GetBit(personalData, 2);
 }
 
-uint8_t Data::GetSchoolSituation(const uint16_t& personalData) {
+uint8_t PersonalData::GetSchoolSituation(const uint16_t& personalData) {
 	return Bit::GetBit(personalData, 3, 2);
 }
 
-uint8_t Data::GetRace(const uint16_t& personalData) {
+uint8_t PersonalData::GetRace(const uint16_t& personalData) {
 	return Bit::GetBit(personalData, 5, 3);
 }
 
-uint8_t Data::GetNationality(const uint16_t& personalData) {
+uint8_t PersonalData::GetNationality(const uint16_t& personalData) {
 	return Bit::GetBit(personalData, 8, 3);
 }
 
-uint8_t Data::GetAge(const uint16_t& personalData) {
+uint8_t PersonalData::GetAge(const uint16_t& personalData) {
 	return Bit::GetBit(personalData, 11, 5);
 }
 
-uint8_t Data::GetFatherOcup(const uint16_t& soceconomicData) {
+uint8_t PersonalData::GetFatherOcup(const uint16_t& soceconomicData) {
 	return Bit::GetBit(soceconomicData, 0, 3);
 }
 
-uint8_t Data::GetMotherOcup(const uint16_t& soceconomicData) {
+uint8_t PersonalData::GetMotherOcup(const uint16_t& soceconomicData) {
 	return Bit::GetBit(soceconomicData, 3, 3);
 }
 
-uint8_t Data::GetWealth(const uint16_t& soceconomicData) {
+uint8_t PersonalData::GetWealth(const uint16_t& soceconomicData) {
 	return Bit::GetBit(soceconomicData, 6, 5);
 }
 
-uint8_t Data::GetHouseQnt(const uint16_t& soceconomicData) {
+uint8_t PersonalData::GetHouseQnt(const uint16_t& soceconomicData) {
 	return Bit::GetBit(soceconomicData, 11, 5);
 }
 
-void Data::SetSex(uint16_t& personalData, bool value) {
+void PersonalData::SetSex(uint16_t& personalData, bool value) {
 	Bit::SetBit(personalData, 0, value);
 }
 
-void Data::SetSchoolType(uint16_t& personalData, bool value) {
+void PersonalData::SetSchoolType(uint16_t& personalData, bool value) {
 	Bit::SetBit(personalData, 1, value);
 }
 
-void Data::SetTrainee(uint16_t& personalData, bool value) {
+void PersonalData::SetTrainee(uint16_t& personalData, bool value) {
 	Bit::SetBit(personalData, 2, value);
 }
 
-void Data::SetSchoolSituation(uint16_t& personalData, uint8_t value) {
+void PersonalData::SetSchoolSituation(uint16_t& personalData, uint8_t value) {
 	Bit::SetBit(personalData, 3, 2, value);
 }
 
-void Data::SetRace(uint16_t& personalData, uint8_t value) {
+void PersonalData::SetRace(uint16_t& personalData, uint8_t value) {
 	Bit::SetBit(personalData, 5, 3, value);
 }
 
-void Data::SetNationality(uint16_t& personalData, uint8_t value) {
+void PersonalData::SetNationality(uint16_t& personalData, uint8_t value) {
 	Bit::SetBit(personalData, 8, 3, value);
 }
 
-void Data::SetAge(uint16_t& personalData, uint8_t value) {
+void PersonalData::SetAge(uint16_t& personalData, uint8_t value) {
 	Bit::SetBit(personalData, 11, 5, value);
 }
 
-void Data::SetFatherOcup(uint16_t& soceconomicData, uint8_t value) {
+void PersonalData::SetFatherOcup(uint16_t& soceconomicData, uint8_t value) {
 	Bit::SetBit(soceconomicData, 0, 3, value);
 }
 
-void Data::SetMotherOcup(uint16_t& soceconomicData, uint8_t value) {
+void PersonalData::SetMotherOcup(uint16_t& soceconomicData, uint8_t value) {
 	Bit::SetBit(soceconomicData, 3, 3, value);
 }
 
-void Data::SetWealth(uint16_t& soceconomicData, uint8_t value) {
+void PersonalData::SetWealth(uint16_t& soceconomicData, uint8_t value) { 
 	Bit::SetBit(soceconomicData, 6, 5, value);
 }
 
-void Data::SetHouseQnt(uint16_t& soceconomicData, uint8_t value) {
+void PersonalData::SetHouseQnt(uint16_t& soceconomicData, uint8_t value) {
 	Bit::SetBit(soceconomicData, 11, 5, value);
+}
+
+uint8_t ScoreData::GetExam(const Score& scoreData, Area area) {
+	return std::_Popcount(scoreData.exam[area].p1) + std::_Popcount(scoreData.exam[area].p2) + std::_Popcount(scoreData.exam[area].p3);
+}
+
+uint16_t ScoreData::GetEssay(const Score& scoreData) {
+	return scoreData.essay;
+}
+
+void ScoreData::SetExam(Score& scoreData, Area area, uint16_t p1, uint16_t p2, uint16_t p3) {
+	scoreData.exam[area].p1 = p1;
+	scoreData.exam[area].p2 = p2;
+	scoreData.exam[area].p3 = p3;
+}
+
+void ScoreData::GetEssay(Score& scoreData, uint16_t value) {
+	scoreData.essay = value;
 }

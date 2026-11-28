@@ -2,29 +2,30 @@
 
 #include <cstdint>
 
+enum Area {
+	Mat, C_Ex, C_Hu, Lin
+};
+
 struct Personal {
 	uint16_t participante;
 	uint16_t socioeconomico;
 };
 
 struct AreaScore {
-	uint16_t p1;	// 01° - 16°
+	uint16_t p1;	// 01° - 16° 
 	uint16_t p2;	// 17° - 32°
 	uint16_t p3;	// 33° - 45° + 3 bits
 };
 
 struct Score {
-	AreaScore Mat;
-	AreaScore Cienc_Ex;
-	AreaScore Cienc_Hu;
-	AreaScore Lin;
+	AreaScore exam[4];
+	uint16_t essay;
 };
 
 struct Participant {
 	Personal personal;
 	Score score;
 };
-
 
 namespace Bit {
 	bool GetBit(uint16_t data, uint8_t position);
@@ -38,9 +39,7 @@ namespace Bit {
 	void BitUnitTest();
 }
 
-namespace Data {
-	uint8_t GetSex(const uint16_t& personalData);
-
+namespace PersonalData {
 	uint8_t GetSex(const uint16_t& personalData);
 
 	uint8_t GetSchoolType(const uint16_t& personalData);
@@ -63,9 +62,6 @@ namespace Data {
 
 	uint8_t GetHouseQnt(const uint16_t& soceconomicData);
 
-	uint8_t GetWifi(const uint16_t& economicData);
-
-	void SetSex(uint16_t& personalData, bool value);
 
 	void SetSex(uint16_t& personalData, bool value);
 
@@ -82,10 +78,20 @@ namespace Data {
 	void SetAge(uint16_t& personalData, uint8_t value);
 
 	void SetFatherOcup(uint16_t& soceconomicData, uint8_t value);
-	
+
 	void SetMotherOcup(uint16_t& soceconomicData, uint8_t value);
-	
+
 	void SetWealth(uint16_t& soceconomicData, uint8_t value);
-	
+
 	void SetHouseQnt(uint16_t& soceconomicData, uint8_t value);
+}
+
+namespace ScoreData {
+	uint8_t GetExam(const Score& scoreData, Area area);
+
+	uint16_t GetEssay(const Score& scoreData);
+
+	void SetExam(Score& scoreData, Area area, uint16_t p1, uint16_t p2, uint16_t p3);
+
+	void GetEssay(Score& scoreData, uint16_t value);
 }
