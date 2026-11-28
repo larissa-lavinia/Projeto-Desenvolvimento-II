@@ -6,7 +6,7 @@ typedef struct request {
     uint8_t id;
     uint8_t year;
     uint8_t state;
-    uint8_t data;
+    uint8_t requiredData;
 } Request;
 
 enum ReturnCode {

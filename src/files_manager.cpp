@@ -67,8 +67,98 @@ int getTotalEntrants(uint8_t year, uint8_t uf) {
     }
 }
 
-ReturnCode returnData(uint8_t moduleId) {
-    return ReturnCode::UNEXPECTEDERROR;
+int getPosition(std::ifstream &file, uint8_t year, uint8_t uf) {
+    if(uf == 255) return 0;
+    int amount = 0;
+    for(int i = 0; i < uf; i++) {
+        amount += getTotalEntrants(year, i);
+    }
+    return amount * sizeof(Personal);
+}
+
+ReturnCode returnData(uint8_t moduleId, Request request) {
+    if(request.requiredData > 6) return ReturnCode::BADREQUEST;
+    if(request.state > 26 && request.state != 255) return ReturnCode::BADREQUEST;
+
+    std::ifstream dataFile;
+    std::ifstream headerFile;
+    if(request.requiredData <= 1) {
+        dataFile.open("files/enem_social_" + std::to_string((int)request.year) + ".dat", std::ios::binary);
+        headerFile.open("files/enem_social_header_" + std::to_string((int)request.year) + ".dat", std::ios::binary);
+        if(!dataFile.is_open() || !headerFile.is_open()) return ReturnCode::FILEERROR;
+    } else {
+        dataFile.open("files/enem_resultados_" + std::to_string((int)request.year) + ".dat", std::ios::binary);
+        headerFile.open("files/enem_resultados_header_" + std::to_string((int)request.year) + ".dat", std::ios::binary);
+        if(!dataFile.is_open() || !headerFile.is_open()) return ReturnCode::FILEERROR;
+    }
+    std::ofstream responseFile("files/connection" + std::to_string((int)moduleId) + ".dat", std::ios::binary);
+    if(!responseFile.is_open()) return ReturnCode::FILEERROR;
+
+    int amount = getTotalEntrants(request.year, request.state);
+    dataFile.seekg(getPosition(headerFile, request.year, request.state));
+
+    switch(request.requiredData) {
+    case 0: { // participante
+        for(int i = 0; i < amount; i++) {
+            Personal personalData;
+            dataFile.read((char*) &personalData, sizeof(Personal));
+            responseFile.write((const char*) &personalData.participante, sizeof(uint16_t));
+        }
+        break;
+    }
+    case 1: { // socioeconomico
+        for(int i = 0; i < amount; i++) {
+            Personal personalData;
+            dataFile.read((char*) &personalData, sizeof(Personal));
+            responseFile.write((const char*) &personalData.socioeconomico, sizeof(uint16_t));
+        }
+        break;
+    }
+    case 2: { // essay
+        for(int i = 0; i < amount; i++) {
+            Score scoreData;
+            dataFile.read((char*) &scoreData, sizeof(Score));
+            responseFile.write((const char*) &scoreData.essay, sizeof(uint16_t));
+        }
+        break;
+    }
+    case 3: { // Mat
+        for(int i = 0; i < amount; i++) {
+            Score scoreData;
+            dataFile.read((char*) &scoreData, sizeof(Score));
+            responseFile.write((const char*) &scoreData.exam[0], sizeof(AreaScore));
+        }
+        break;
+    }
+    case 4: { // C_Ex
+        for(int i = 0; i < amount; i++) {
+            Score scoreData;
+            dataFile.read((char*) &scoreData, sizeof(Score));
+            responseFile.write((const char*) &scoreData.exam[1], sizeof(AreaScore));
+        }
+        break;
+    }
+    case 5: { // C_Hu
+        for(int i = 0; i < amount; i++) {
+            Score scoreData;
+            dataFile.read((char*) &scoreData, sizeof(Score));
+            responseFile.write((const char*) &scoreData.exam[2], sizeof(AreaScore));
+        }
+        break;
+    }
+    case 6: { // Lin
+        for(int i = 0; i < amount; i++) {
+            Score scoreData;
+            dataFile.read((char*) &scoreData, sizeof(Score));
+            responseFile.write((const char*) &scoreData.exam[3], sizeof(AreaScore));
+        }
+        break;
+    }
+    }
+    dataFile.close();
+    headerFile.close();
+    responseFile.close();
+    return dataFile.fail() || headerFile.fail() || responseFile.fail() ? ReturnCode::FILEERROR : ReturnCode::SUCCESS;
 }
 
 int toInt(const std::string& s) {
