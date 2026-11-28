@@ -93,5 +93,5 @@ namespace ScoreData {
 
 	void SetExam(Score& scoreData, Area area, uint16_t p1, uint16_t p2, uint16_t p3);
 
-	void GetEssay(Score& scoreData, uint16_t value);
+	void SetEssay(Score& scoreData, uint16_t value);
 }

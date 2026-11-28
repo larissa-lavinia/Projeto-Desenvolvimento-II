@@ -143,6 +143,6 @@ void ScoreData::SetExam(Score& scoreData, Area area, uint16_t p1, uint16_t p2, u
 	scoreData.exam[area].p3 = p3;
 }
 
-void ScoreData::GetEssay(Score& scoreData, uint16_t value) {
+void ScoreData::SetEssay(Score& scoreData, uint16_t value) {
 	scoreData.essay = value;
 }
