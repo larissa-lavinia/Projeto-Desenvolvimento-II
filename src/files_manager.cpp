@@ -44,7 +44,27 @@ ReturnCode receiveResponse(uint8_t moduleId) {
 }
 
 int getTotalEntrants(uint8_t year, uint8_t uf) {
-    return 0;
+    if(year < 24 || year > 25) return -1;
+    
+    std::ifstream file("files/enem_social_header_" + std::to_string((int)year) + ".dat", std::ios::binary);
+    if(!file.is_open()) return -1;
+
+    if(uf == 255) {
+        int sum = 0;
+        for(int i = 0; i < 27; i++) {
+            int value;
+            file.read((char*) &value, sizeof(int));
+            sum += value;
+        }
+        file.close();
+        return sum;
+    } else {
+        int value;
+        file.seekg(uf * sizeof(int));
+        file.read((char*) &value, sizeof(int));
+        file.close();
+        return value;
+    }
 }
 
 ReturnCode returnData(uint8_t moduleId) {
