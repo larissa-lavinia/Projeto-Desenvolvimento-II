@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Simulado" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Simulado">
+				<Option output="bin/Debug/Simulado" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="." />
+				<Option object_output="obj/Simulado/" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="struct.cpp">
+			<Option compilerVar="CPP" />
+		</Unit>
+		<Unit filename="tri.cpp">
+			<Option compilerVar="CPP" />
+		</Unit>
+		<Unit filename="gerar_simulado.cpp">
+			<Option compilerVar="CPP" />
+		</Unit>
+		<Unit filename="aplicar_prova.cpp">
+			<Option compilerVar="CPP" />
+		</Unit>
+		<Unit filename="salvar_resultados.cpp">
+			<Option compilerVar="CPP" />
+		</Unit>
+		<Unit filename="historico_binario.cpp">
+			<Option compilerVar="CPP" />
+		</Unit>
+		<Unit filename="executar_simulado.cpp">
+			<Option compilerVar="CPP" />
+		</Unit>
+		<Unit filename="verificar_includes.cpp">
+			<Option compilerVar="CPP" />
+		</Unit>
+		<Unit filename="struct.hpp" />
+		<Unit filename="tri.hpp" />
+		<Unit filename="gerar_simulado.hpp" />
+		<Unit filename="aplicar_prova.hpp" />
+		<Unit filename="salvar_resultados.hpp" />
+		<Unit filename="historico_binario.hpp" />
+		<Unit filename="executar_simulado.hpp" />
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>

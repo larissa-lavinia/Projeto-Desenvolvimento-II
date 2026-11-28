@@ -1,0 +1,142 @@
+# ============================================================
+#  BANCO DE QUESTOES DO SIMULADO (TESTE/ARQUIVO PROVISORIO)
+#  Linhas que comecam com "# " (como estas) sao ignoradas pelo programa.
+#
+#  FORMATO DE CADA QUESTAO:
+#    #QUESTAO
+#    ENUNCIADO: texto da pergunta (em uma linha so)
+#    A) texto da alternativa | TIPO
+#    B) ...
+#    C) ...
+#    D) ...
+#    E) ...
+#    DIFICULDADE: numero de -3 (facil) a 3 (dificil)
+#    #FIM
+#
+#  TIPO de cada alternativa: CORRETA, DISTRATOR ou IMPOSSIVEL
+#  (cada questao precisa de exatamente UMA alternativa CORRETA).
+#
+#  Em vez de DIFICULDADE, pode vir  PERCENTUAL: 0.35  (35% da turma acertou);
+#  o programa converte para dificuldade. Se nenhuma das duas vier, vale 0.
+#  Dica: salve sem acentos (ou em ANSI) para nao aparecerem simbolos estranhos.
+# ============================================================
+
+#QUESTAO
+ENUNCIADO: Qual a capital do Brasil?
+A) Rio de Janeiro | DISTRATOR
+B) Brasilia | CORRETA
+C) Salvador | IMPOSSIVEL
+D) Sao Paulo | IMPOSSIVEL
+E) Recife | IMPOSSIVEL
+DIFICULDADE: -1.5
+#FIM
+
+#QUESTAO
+ENUNCIADO: Quanto e 2 + 2 * 3?
+A) 12 | DISTRATOR
+B) 10 | IMPOSSIVEL
+C) 8 | CORRETA
+D) 6 | IMPOSSIVEL
+E) 4 | IMPOSSIVEL
+DIFICULDADE: -0.5
+#FIM
+
+#QUESTAO
+ENUNCIADO: Qual o maior planeta do Sistema Solar?
+A) Terra | IMPOSSIVEL
+B) Marte | IMPOSSIVEL
+C) Jupiter | CORRETA
+D) Saturno | DISTRATOR
+E) Venus | IMPOSSIVEL
+DIFICULDADE: 0.0
+#FIM
+
+#QUESTAO
+ENUNCIADO: Qual a raiz quadrada de 144?
+A) 14 | IMPOSSIVEL
+B) 12 | CORRETA
+C) 72 | IMPOSSIVEL
+D) 11 | DISTRATOR
+E) 16 | IMPOSSIVEL
+DIFICULDADE: 0.5
+#FIM
+
+#QUESTAO
+ENUNCIADO: Qual o simbolo quimico do ouro?
+A) Ag | DISTRATOR
+B) Au | CORRETA
+C) Al | IMPOSSIVEL
+D) Or | IMPOSSIVEL
+E) Ou | DISTRATOR
+DIFICULDADE: 1.5
+#FIM
+
+#QUESTAO
+ENUNCIADO: Quantos lados tem um hexagono?
+A) 5 | DISTRATOR
+B) 6 | CORRETA
+C) 7 | DISTRATOR
+D) 8 | IMPOSSIVEL
+E) 12 | IMPOSSIVEL
+DIFICULDADE: -1.0
+#FIM
+
+#QUESTAO
+ENUNCIADO: Quem escreveu o romance Dom Casmurro?
+A) Jose de Alencar | DISTRATOR
+B) Machado de Assis | CORRETA
+C) Eca de Queiroz | DISTRATOR
+D) Graciliano Ramos | IMPOSSIVEL
+E) Clarice Lispector | IMPOSSIVEL
+DIFICULDADE: 0.0
+#FIM
+
+#QUESTAO
+ENUNCIADO: Quanto e 15% de 200?
+A) 15 | DISTRATOR
+B) 30 | CORRETA
+C) 20 | IMPOSSIVEL
+D) 45 | IMPOSSIVEL
+E) 3 | IMPOSSIVEL
+DIFICULDADE: 0.3
+#FIM
+
+#QUESTAO
+ENUNCIADO: Qual gas as plantas absorvem na fotossintese?
+A) Oxigenio | DISTRATOR
+B) Gas carbonico | CORRETA
+C) Nitrogenio | IMPOSSIVEL
+D) Helio | IMPOSSIVEL
+E) Hidrogenio | IMPOSSIVEL
+DIFICULDADE: -0.8
+#FIM
+
+#QUESTAO
+ENUNCIADO: Em que continente fica o Egito?
+A) Asia | DISTRATOR
+B) Africa | CORRETA
+C) Europa | IMPOSSIVEL
+D) America | IMPOSSIVEL
+E) Oceania | IMPOSSIVEL
+DIFICULDADE: -1.2
+#FIM
+
+#QUESTAO
+ENUNCIADO: Qual a formula quimica da agua?
+A) CO2 | IMPOSSIVEL
+B) H2O | CORRETA
+C) O2 | DISTRATOR
+D) NaCl | IMPOSSIVEL
+E) H2O2 | DISTRATOR
+DIFICULDADE: -1.8
+#FIM
+
+#QUESTAO
+ENUNCIADO: Qual a derivada de x elevado a 2?
+A) x | DISTRATOR
+B) 2x | CORRETA
+C) x elevado a 2 | DISTRATOR
+D) 2 | IMPOSSIVEL
+E) 2x elevado a 2 | IMPOSSIVEL
+PERCENTUAL: 0.35
+#FIM
