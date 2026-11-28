@@ -40,6 +40,8 @@ typedef struct idxResults {
     int iRed = -1;
 } ColunsResultsIndex;
 
+ReturnCode returnData(Request request);
+
 ReturnCode module4Execution(uint8_t cod) {
     if(!cod) {
         return ReturnCode::UNEXPECTEDERROR;
