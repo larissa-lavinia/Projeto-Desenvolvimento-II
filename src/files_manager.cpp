@@ -8,8 +8,8 @@ ReturnCode send(uint8_t moduleId) {
     return ReturnCode::UNEXPECTEDERROR;
 }
 
-Request receive(uint8_t moduleId) {
-    return;
+ReturnCode receive(uint8_t moduleId) {
+    return ReturnCode::UNEXPECTEDERROR;
 }
 
 ReturnCode receiveResponse(uint8_t moduleId) {
@@ -26,7 +26,7 @@ ReturnCode getByYear(uint8_t moduleId) {
 
 ReturnCode getByState(uint8_t moduleId) {
     return ReturnCode::UNEXPECTEDERROR;
-}
+} 
 
 ReturnCode initializeDataFile(std::string path, uint8_t year, uint8_t fileType) {
     return ReturnCode::UNEXPECTEDERROR;

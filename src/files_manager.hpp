@@ -53,7 +53,7 @@ ReturnCode send(uint8_t moduleId);
  * 
  * @return requisição.
  */
-Request receive(uint8_t moduleId);
+ReturnCode receive(uint8_t moduleId);
 
 /** @brief Recebe o estado resposta a uma requisição feita
  * 
